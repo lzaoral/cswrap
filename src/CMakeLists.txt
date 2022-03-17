@@ -86,10 +86,10 @@ if(LD_LINUX_SO)
 
     # readlink() wrapper
     add_library(csexec-preload SHARED csexec-preload.c)
-    set_target_properties(csexec-preload PROPERTIES LINK_FLAGS "-nostdlib")
+    set_target_properties(csexec-preload PROPERTIES LINK_FLAGS "-nostdlib -Wl,-Bstatic -l${CMAKE_DL_LIBS} -pthread")
     target_compile_definitions(csexec-preload PRIVATE LD_LINUX_SO="${LD_LINUX_SO}")
-    target_link_libraries(csexec-preload PRIVATE ${CMAKE_DL_LIBS}
-                                                 Threads::Threads)
+    #    target_link_libraries(csexec-preload PRIVATE ${CMAKE_DL_LIBS}.a
+    #                                             Threads::Threads)
     install(TARGETS csexec-preload DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
     # check whether ${LD_LINUX_SO} takes --argv0, introduced with:
