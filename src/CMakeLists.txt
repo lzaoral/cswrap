@@ -21,6 +21,14 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS OFF)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra")
 
+# link to libc statically
+option(STATIC_LINKING "Link to libc statically" OFF)
+if(STATIC_LINKING)
+    set(CMAKE_EXE_LINKER_FLAGS "-static ${CMAKE_EXE_LINKER_FLAGS}")
+    set(CMAKE_MODULE_LINKER_FLAGS "-static ${CMAKE_MODULE_LINKER_FLAGS}")
+    set(CMAKE_SHARED_LINKER_FLAGS "-static ${CMAKE_SHARED_LINKER_FLAGS}")
+endif()
+
 # initialize pthreads
 set(THREADS_PREFER_PTHREAD_FLAG TRUE)
 find_package(Threads REQUIRED)
