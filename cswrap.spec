@@ -1,7 +1,7 @@
 %define csexec_archs aarch64 ppc64le s390x x86_64
 
 Name:       cswrap
-Version:    2.2.0
+Version:    2.2.1
 Release:    1%{?dist}
 Summary:    Generic compiler wrapper
 
